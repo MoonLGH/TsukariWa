@@ -136,7 +136,7 @@ export = {
             from: from.toLowerCase()
         })
 
-        client.reply(message.chatId,`FROM : ${late.from.language.iso} \n TO : ${to}`,message.id)
+        client.reply(message.chatId,`FROM : ${late.from.language.iso} \nTO : ${to}`,message.id)
         client.reply(message.chatId,`${late.text}`,message.id)
     }
 }
