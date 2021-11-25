@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/collection": "^0.3.2",
     "@open-wa/wa-automate": "^4.24.2"
   }
 }
