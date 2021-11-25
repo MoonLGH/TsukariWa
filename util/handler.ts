@@ -22,10 +22,7 @@ export async function Handle(Message:Message,Client:Client) {
         
         console.log(command)
         if(!command) return
-        if(commands.has(command.toLowerCase()) || (commands.find((cmd) => {
-            if(!cmd.alias) return false;
-            return cmd.alias.includes(command!.toLowerCase())
-        }))) {
+        if(commands.has(command.toLowerCase()) || commands.find(cmd => cmd.alias.includes(command!.toLowerCase()))) {
             let cmd = commands.get(command) || commands.find((cmd) => cmd.alias.includes(command!.toLowerCase()));
             cmd!.execute(Message, args,Client);
         }
