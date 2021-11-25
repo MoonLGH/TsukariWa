@@ -114,7 +114,7 @@ export = {
     name: "translate",
     description: "translate text",
     execute: async (message: Message, args: string[], client: Client) => {
-        if(args.length < 1) return client.reply(message.chatId, "please do \n translate <TO Optional> FROM Text",message.id)
+        if(args.length < 1) return client.reply(message.chatId, "please do \n translate TO <FROM Optional> Text",message.id)
         let from,to,translates
         from = "auto"
         to = args.shift()
@@ -127,9 +127,9 @@ export = {
 
         translates = args.join(" ")
     
-        if(!to || from) return client.reply(message.chatId, "please do \n translate <TO Optional> FROM Text",message.id)
+        if(!to || !from) return client.reply(message.chatId, "please do \n translate TO <FROM Optional> Text",message.id)
         if(!isSupported(to!) || !isSupported(from!)){
-            return client.reply(message.chatId, "please do \n translate <TO Optional> FROM Text",message.id)
+            return client.reply(message.chatId, "please do \n translate TO <FROM Optional> Text",message.id)
         }
         let late = await translate(translates, {
             to: to,
