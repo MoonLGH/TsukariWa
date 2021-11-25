@@ -132,8 +132,8 @@ export = {
             return client.reply(message.chatId, "please do \n translate TO <FROM Optional> Text",message.id)
         }
         let late = await translate(translates, {
-            to: to,
-            from: from
+            to: to.toLowerCase(),
+            from: from.toLowerCase()
         })
 
         client.reply(message.chatId,`FROM : ${late.from.language.iso} \n TO : ${to}`,message.id)
