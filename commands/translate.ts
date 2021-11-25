@@ -111,8 +111,8 @@ var langs = {
 };
 
 export = {
-    name: "stickergif",
-    description: "Sticker GIF",
+    name: "translate",
+    description: "translate text",
     execute: async (message: Message, args: string[], client: Client) => {
         if(args.length < 1) return client.reply(message.chatId, "please do \n translate <TO Optional> FROM Text",message.id)
         let from,to,translates
