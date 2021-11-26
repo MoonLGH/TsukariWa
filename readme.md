@@ -21,8 +21,11 @@ MD(Multiple Device) adalah sebuah fitur yang sangat berguna, kamu jadi bisa memb
 Cara aktifkan
 
 -Buka Whatsapp
+
 -Titik 3 di atas ujung
+
 -Linked Device/Hubungkan Device
+
 -Beta (Multiple Devices)/Beta Banyak Devices = On
 
 #### - EN -
@@ -38,14 +41,17 @@ Set the bot prefix
 
 set if your bot want to use MD(Multiple Device) with inputing `true` or `false` in the line (Recomended = `true`)
 
-###### Mengaktifasi MD
+###### Activating MD
 MD(Multiple Device) is a useful feature that allow you to keep the linked accounts still on even if your phone died
 
 How to turn it on
 
 -Open Whatsapp
+
 -3 dots on the corner
+
 -Linked Device
+
 -Beta (Multiple Devices) = On
 
 
