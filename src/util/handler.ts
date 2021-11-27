@@ -31,7 +31,7 @@ export async function Handle(Message:Message,Client:Client) {
 
 export async function LoadComamnds(){
     const commandFiles = fs
-    .readdirSync("./commands/")
+    .readdirSync("./src/commands/")
     .filter((file) => file.endsWith(".ts"));
 
     for(let file of commandFiles){
