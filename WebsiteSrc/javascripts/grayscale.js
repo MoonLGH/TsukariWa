@@ -42,9 +42,9 @@
 
 const t = document.getElementById("title");
 
-while (t){
+if (t){
   setInterval(()=>{
-    animate();
+    animate(t);
     if (t.innerText === "TsukariWA") {
       t.innerText = "つかりWA";
     } else {
@@ -53,7 +53,7 @@ while (t){
   }, 5000);
 }
 
-function animate() {
+function animate(t) {
   setTimeout(()=>{
     t.classList.remove("animate");
   }, 1000);
