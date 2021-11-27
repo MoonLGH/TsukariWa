@@ -29,22 +29,49 @@ export = {
                     console.log(resolt)
                     return client.reply(msg.chatId, 'Maaf, saya tidak tau ini anime apa', msg.id)
                 }
-                let teks = ""
-                const { is_adult, title, title_chinese, title_romaji, title_english, episode, similarity, filename, at, tokenthumb, anilist_id } = resolt.result[0]
-                
-                const { title: { chinese, english, native, romaji } ,isAdult } = (await getAnilistInfo(anilist_id) as Anime)
-                
-                
-                if (similarity < 0.92) {
-                    teks = '*Saya memiliki keyakinan rendah dalam hal ini* :\n\n'
-                }
-                teks += `➸ *Title Japanese* : ${romaji}\n➸ *Title chinese* : ${chinese}\n➸ *Title Romaji* : ${romaji}\n➸ *Title English* : ${english}\n`
-                teks += `➸ *Ecchi* : ${isAdult}\n`
-                teks += `➸ *Eps* : ${episode.toString()}\n`
-                teks += `➸ *Kesamaan* : ${(similarity * 100).toFixed(1)}%\n`
-                var video = `https://media.trace.moe/video/${anilist_id}/${encodeURIComponent(filename)}?t=${at}&token=${tokenthumb}`;
-                client.sendFileFromUrl(msg.chatId, video, `${filename}.mp4`, teks, msg.id).catch(() => {
-                    client.reply(msg.chatId, teks, msg.id)
+              
+  const searchResult = await resolt.json();
+  if(!searchResult || !searchResult.result || !searchResult.result[0]) return client.reply(message.chatId, 'No Anime founded', message.id)
+  const {
+    anilist,
+    similarity,
+    filename,
+    from,
+    to,
+    video
+  } = searchResult.result[0];
+  const {
+    title,
+    isAdult
+  } = (await getAnilistInfo(
+    anilist
+  ) as Anime)
+
+  const {
+    chinese,
+    english,
+    native,
+    romaji
+  } = title
+
+  let text = "";
+  text += [native, chinese, romaji, english]
+    .filter((e) => e)
+    .reduce(
+      // deduplicate titles
+      (acc:any, cur:any) =>
+      acc.map((e:any) => e.toLowerCase()).includes(cur.toLowerCase()) ? acc : [...acc, cur],
+      []
+    )
+    .map((t:any) => `\`${t}\``)
+    .join("\n");
+  text += "\n";
+  text += `\`${filename.replace(/`/g, "``")}\`\n`;
+    text += `\`${formatTime(from)}\`\n`;
+    text += `\`${(similarity * 100).toFixed(1)}% similarity\`\n`;
+
+               client.sendFileFromUrl(msg.chatId, video, `${filename}.mp4`, text, msg.id).catch(() => {
+                    client.reply(msg.chatId, text, msg.id)
                 })
             }).catch( err => {
                 console.log(err)
@@ -59,6 +86,17 @@ export = {
     }    
 }
 
+const formatTime = (timeInSeconds:string) => {
+  const sec_num = Number(timeInSeconds);
+  const hours:any = Math.floor(sec_num / 3600)
+    .toString()
+    .padStart(2, "0");
+  const minutes:any = Math.floor((sec_num - hours * 3600) / 60)
+    .toString()
+    .padStart(2, "0");
+  const seconds = (sec_num - hours * 3600 - minutes * 60).toFixed(0).padStart(2, "0");
+  return `${hours}:${minutes}:${seconds}`;
+};
 
 interface Animes {
     result : Anime[]
