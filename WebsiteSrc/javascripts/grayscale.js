@@ -42,14 +42,16 @@
 
 const t = document.getElementById("title");
 
-setInterval(()=>{
-  animate();
-  if (t.innerText === "Tsukari") {
-    t.innerText = "つかり";
-  } else {
-    t.innerText = "Tsukari";
-  }
-}, 5000);
+while (t){
+  setInterval(()=>{
+    animate();
+    if (t.innerText === "TsukariWA") {
+      t.innerText = "つかりWA";
+    } else {
+      t.innerText = "TsukariWA";
+    }
+  }, 5000);
+}
 
 function animate() {
   setTimeout(()=>{

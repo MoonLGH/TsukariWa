@@ -2,45 +2,35 @@
 /* eslint-disable no-undef */
 const table = document.getElementById("tablePlaceHolder");
 const query = document.querySelector("#search-input > input");
-const slashParsed = JSON.parse(slash);
-const textParsed = JSON.parse(decodeURIComponent(text));
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+let search = params.search || ""
 
-if (type === "slash") {
+function setCMD(cmd){
+  // <th>Usage</th>
+  // <th>Permission needed</th>
   table.innerHTML = `<thead><tr>
-    <th>Command</th>
+    <th>Name</th>
     <th>Description</th>
-    </tr></thead>`;
-  for (let i = 0; i < slashParsed.length; i++) {
-    if (slashParsed[i].name.toLowerCase().includes(search.toLowerCase())) {
-      table.innerHTML += `<tbody><tr>
-            <td data-label="Command">${capitalizeFirstLetter(slashParsed[i].name)}</td>
-            <td data-label="Description">${slashParsed[i].description}</td>
-            </tr></tbody>`;
-    }
-  }
-} else if (type === "text") {
-  table.innerHTML = `<thead><tr>
-    <th>Usage</th>
-    <th>Description</th>
-    <th>Permission needed</th>
     <th>Alias</th>
     <th>Code</th>
     </tr></thead>`;
-  for (let i = 0; i < textParsed.length; i++) {
-    if (textParsed[i].name.toLowerCase().includes(search.toLowerCase()) || textParsed[i].alias.includes(search.toLowerCase())) {
+  for (let i = 0; i < cmd.length; i++) {
+    if (cmd[i].name.toLowerCase().includes(search.toLowerCase()) || cmd[i].alias.includes(search.toLowerCase())) {
+      // <td data-label="Usage">${(cmd[i].usage.replace(cmd[i].name, capitalizeFirstLetter(cmd[i].name))).replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</td>
+      // <td data-label="Permission Needed">${cmd[i].other.permission.length !== 0 ? cmd[i].other.permission.join(" & ") : "-"}</td>
       table.innerHTML += `<tbody><tr>
-            <td data-label="Usage">${(textParsed[i].usage.replace(textParsed[i].name, capitalizeFirstLetter(textParsed[i].name))).replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</td>
-            <td data-label="Description">${textParsed[i].description}</td>
-            <td data-label="Permission Needed">${textParsed[i].other.permission.length !== 0 ? textParsed[i].other.permission.join(" & ") : "-"}</td>
-            <td data-label="Alias">${textParsed[i].alias.length !== 0 ? capitalizeFirstLetterArray(textParsed[i].alias).join("/") : "-"}</td>
-            <td data-label="Code"><a class="link" href="${generateCodeLink(textParsed[i])}">Code</a></td>
+          <td data-label="Name">${capitalizeFirstLetter(cmd[i].name)}</td>
+          <td data-label="Description">${cmd[i].description}</td>
+            <td data-label="Alias">${cmd[i].alias.length !== 0 ? capitalizeFirstLetterArray(cmd[i].alias).join("/") : "-"}</td>
+            <td data-label="Code"><a class="link" href="${generateCodeLink(cmd[i])}">Code</a></td>
             </tr></tbody>`;
     }
   }
 }
 
 function generateCodeLink(code) {
-  return `https://github.com/MoonLGH/Tsukari-Bot/blob/main/src/Discord/TextCommands/${code.folder}/${code.file}`;
+  return `https://github.com/MoonLGH/TsukariWa/blob/main${code.path}`;
 }
 
 // make when enter pressed on query do inputchange()
@@ -51,13 +41,9 @@ query.addEventListener("keyup", function(event) {
   }
 });
 
-function selectchange(element) {
-  window.location.href = `?type=${element.value}&q=${search}`;
-}
-
 
 function inputchange() {
-  window.location.href = `?type=${type}&q=${query.value}`;
+  window.location.href = `?search=${query.value}`;
 }
 
 function capitalizeFirstLetter(string) {
@@ -70,3 +56,29 @@ function capitalizeFirstLetterArray(arr) {
   }
   return arr;
 }
+
+let url = "https://api.github.com/repos/MoonLGH/TsukariWa/git/trees/main"
+
+async function dofetch(url){
+    let fetching = await fetch(url)
+    let data = await fetching.json()
+    return data
+}
+function b64DecodeUnicode(str) {
+    // Going backwards: from bytestream, to percent-encoding, to original string.
+    return decodeURIComponent(atob(str).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+}
+
+
+dofetch(url).then(tree =>{
+  dofetch(tree.tree.find(item => item.path === "src").url).then(tree =>{
+      dofetch(tree.tree.find(item => item.path === "commands").url).then(tree =>{
+          dofetch(tree.tree.find(item => item.path === "commandsList.json").url).then(list =>{
+              let commands = JSON.parse(b64DecodeUnicode(list.content))
+              setCMD(commands)
+          })
+      })
+  })
+})
