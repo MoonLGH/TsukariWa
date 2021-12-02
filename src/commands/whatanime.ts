@@ -30,7 +30,7 @@ export = {
                     return client.reply(msg.chatId, 'Maaf, saya tidak tau ini anime apa', msg.id)
                 }
               
-  const searchResult = await resolt.json();
+  const searchResult = resolt
   if(!searchResult || !searchResult.result || !searchResult.result[0]) return client.reply(message.chatId, 'No Anime founded', message.id)
   const {
     anilist,
