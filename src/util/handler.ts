@@ -1,7 +1,7 @@
 import { Message,Client } from "@open-wa/wa-automate";
 import settings from "./settings";
 import fs from "fs"
-import { commands } from "./GlobalVar";
+import { commands,autoChat } from "./GlobalVar";
 import { command } from "./typing";
 
 const prefix = settings.prefix;
@@ -28,7 +28,7 @@ export async function Handle(Message:Message,Client:Client) {
         }
     }else {
         let check = await checkTag(Message.body)
-        if(check){
+        if(check && autoChat === true){
             Client.reply(Message.chatId,check.replyWith,Message.id)
         }
     }
@@ -38,7 +38,7 @@ async function checkTag(str:string){
     let jsons = await import("./autoChat.json")
 
     if(jsons.default.find(json => str.toLowerCase().includes(json.text))){
-        return {reply:true,replyWith:jsons.default.find(json => str.includes(json.text))!.reply}
+        return {reply:true,replyWith:jsons.default.find(json => str.toLowerCase().includes(json.text))!.reply}
     }
     return null
 }
