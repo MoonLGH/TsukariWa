@@ -27,7 +27,7 @@ export = {
         if(fulltext.includes("|")){
             let split = fulltext.split("|")
             topText = split.shift()!
-            bottomText = split.join(" ")
+            bottomText = split.join("")
         }else{
             let split = fulltext.split(" ")
             topText = split.shift()!
@@ -54,7 +54,7 @@ export = {
                 .print(
                   font,
                   lenna.bitmap.width / 2 - (Jimp.measureText(font, bottomText) / 2),
-                  lenna.bitmap.height - Jimp.measureTextHeight(font, bottomText,100),  
+                  lenna.bitmap.height - Jimp.measureTextHeight(font, bottomText,Jimp.measureText(font, bottomText)),  
                   {   
                     text: bottomText,
                     alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,

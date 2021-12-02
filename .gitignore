@@ -3,3 +3,4 @@ _IGNORE_session
 logs
 session.data.json
 Website
+.env
