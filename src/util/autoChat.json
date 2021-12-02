@@ -1,4 +1,10 @@
 [{
     "text":"assalamualaikum",
-    "reply":"Waalaikumsalam"
-}]
+    "reply":"Waalaikumsalam",
+    "exlude":["1."]
+},{
+    "text":"assalamu'alaikum",
+    "reply":"Waalaikumsalam",
+    "exlude":["1."]
+}
+]
