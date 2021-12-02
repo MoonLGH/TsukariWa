@@ -54,25 +54,23 @@ export = {
     romaji
   } = title
 
-  let text = "";
-  text += [native, chinese, romaji, english]
-    .filter((e) => e)
-    .reduce(
-      // deduplicate titles
-      (acc:any, cur:any) =>
-      acc.map((e:any) => e.toLowerCase()).includes(cur.toLowerCase()) ? acc : [...acc, cur],
-      []
-    )
-    .map((t:any) => `\`${t}\``)
-    .join("\n");
-  text += "\n";
-  text += `\`${filename.replace(/`/g, "``")}\`\n`;
-    text += `\`${formatTime(from)}\`\n`;
-    text += `\`${(similarity * 100).toFixed(1)}% similarity\`\n`;
-
-               client.sendFileFromUrl(msg.chatId, video, `${filename}.mp4`, text, msg.id).catch(() => {
-                    client.reply(msg.chatId, text, msg.id)
-                })
+              let text = "";
+              text += [native, chinese, romaji, english]
+                .filter((e) => e)
+                .reduce(
+                  // deduplicate titles
+                  (acc:any, cur:any) =>
+                  acc.map((e:any) => e.toLowerCase()).includes(cur.toLowerCase()) ? acc : [...acc, cur],
+                  []
+                )
+                .map((t:any) => `\`${t}\``)
+                .join("\n");
+              text += "\n";
+              text += `\`${filename.replace(/`/g, "``")}\`\n`;
+              text += `\`${formatTime(from)}\`\n`;
+              text += `\`${(similarity * 100).toFixed(1)}% similarity\`\n`;
+              client.reply(msg.chatId, text, msg.id)
+               client.sendFileFromUrl(msg.chatId, video, `${filename}.mp4`, text, msg.id)
             }).catch( err => {
                 console.log(err)
                 client.reply(message.chatId, 'Error, kayaknya kebesaran gambarnya', message.id)
