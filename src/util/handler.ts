@@ -26,8 +26,22 @@ export async function Handle(Message:Message,Client:Client) {
             let cmd = commands.get(command) || commands.find((cmd) => cmd.alias.includes(command!.toLowerCase()));
             cmd!.execute(Message, args,Client);
         }
+    }else {
+        let check = await checkTag(Message.body)
+        if(check){
+            Client.reply(Message.chatId,check.replyWith,Message.id)
+        }
     }
 } 
+
+async function checkTag(str:string){
+    let jsons = await import("./autoChat.json")
+
+    if(jsons.default.find(json => str.toLowerCase().includes(json.text))){
+        return {reply:true,replyWith:jsons.default.find(json => str.includes(json.text))!.reply}
+    }
+    return null
+}
 
 export async function LoadComamnds(){
     const commandFiles = fs
