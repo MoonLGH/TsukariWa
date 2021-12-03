@@ -10,7 +10,8 @@ create({
     authTimeout:60,
     logConsole: false,
     multiDevice: settings.MultipleDevice,
-    cachedPatch: true
+    cachedPatch: true,
+    useChrome: settings.UseChrome ? true : false,
 }).then(client => start(client));
 
 function start(client: Client) {

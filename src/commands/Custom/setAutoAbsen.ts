@@ -6,7 +6,7 @@ export = {
     description: "setAutoAbsen (Custom) (ownerOnly)",
     execute: async (Message: Message, args: string[],client:Client) => {
         if(Message.fromMe){
-            let Data = await import("../util/GlobalVar")
+            let Data = await import("../../util/GlobalVar")
             Data.autoAbsen = JSON.parse(args[0])
             client.reply(Message.chatId, "AutoAbsen has been set to " + Data.autoAbsen,Message.id)
         }else{

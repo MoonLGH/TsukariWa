@@ -30,6 +30,7 @@ export async function Handle(Message:Message,Client:Client) {
         let check = await checkTag(Message.body)
         if(check && check.reply === true && autoChat === true){
             Client.reply(Message.chatId,check.replyWith,Message.id)
+            console.log(`Tag command - ${check.name}, replied with: ${check.replyWith}`)
         }
 
         // this one is just random stuff for my schools, You can delete this
@@ -43,28 +44,33 @@ async function checkTag(str:string){
     let exist = jsons.default.find(json => str.toLowerCase().includes(json.text))
     if(exist){
         if(exist.exclude && !exist.exclude.find(ex => str.toLowerCase().includes(ex.toLowerCase()))){
-            return {reply:true,replyWith:exist.reply}
+            return {reply:true,replyWith:exist.reply,name:exist.text}
         }else if(exist.exclude && exist.exclude.find(ex => str.toLowerCase().includes(ex.toLowerCase()))){
             return null
         }            
-        return {reply:true,replyWith:exist.reply}
+        return {reply:true,replyWith:exist.reply,name:exist.text}
     }
     return null
 }
 
 export async function LoadComamnds(){
-    const commandFiles = fs
-    .readdirSync("./src/commands/")
-    .filter((file) => file.endsWith(".ts"));
+    const dirs = fs
+    .readdirSync("./src/commands/",{
+        withFileTypes: true,
+      }).filter((dirent) => dirent.isDirectory()).map((dirent) => dirent.name);
 
-    for(let file of commandFiles){
-        const command = await import(`../commands/${file}`);
-        commands.set(command.name.toLowerCase(), {
-            name: command.name,
-            alias: command.alias || [],
-            description: command.description,
-            execute: command.execute
-        } as command);
+    for (const folder of dirs) {
+        for(let file of fs.readdirSync("./src/commands/" + folder).filter((file) => file.endsWith(".ts"))){
+            const command = await import(`../commands/${folder}/${file}`);
+                commands.set(command.name.toLowerCase(), {
+                    name: command.name,
+                    alias: command.alias || [],
+                    category: folder,
+                    filepath: file,
+                    description: command.description,
+                    execute: command.execute
+                } as command);
+        }
     }
 }
 

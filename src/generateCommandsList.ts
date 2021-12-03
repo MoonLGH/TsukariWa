@@ -9,7 +9,8 @@ async function start(){
             name: cmd.name,
             alias: cmd.alias,
             description: cmd.description,
-            path: `/src/commands/${cmd.name}.ts`
+            category: cmd.category,
+            path: `/src/commands/${cmd.category}/${cmd.filepath}`
         }
     })))
     console.log("Done")
