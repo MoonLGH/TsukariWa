@@ -1,6 +1,10 @@
 node_modules
 _IGNORE_session
 logs
-session.data.json
 Website
 .env
+
+# managed
+**.data.json
+**.node-persist**
+# end managed

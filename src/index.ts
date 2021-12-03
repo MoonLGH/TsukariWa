@@ -10,6 +10,7 @@ create({
     authTimeout:0,
     logConsole: false,
     multiDevice: settings.MultipleDevice,
+    cachedPatch: true
 }).then(client => start(client));
 
 function start(client: Client) {

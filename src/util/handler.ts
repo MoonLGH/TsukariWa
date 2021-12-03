@@ -1,7 +1,7 @@
 import { Message,Client } from "@open-wa/wa-automate";
 import settings from "./settings";
 import fs from "fs"
-import { commands,autoChat } from "./GlobalVar";
+import { commands,autoChat,autoAbsen } from "./GlobalVar";
 import { command } from "./typing";
 
 const prefix = settings.prefix;
@@ -28,17 +28,26 @@ export async function Handle(Message:Message,Client:Client) {
         }
     }else {
         let check = await checkTag(Message.body)
-        if(check && autoChat === true){
+        if(check && check.reply === true && autoChat === true){
             Client.reply(Message.chatId,check.replyWith,Message.id)
         }
+
+        // this one is just random stuff for my schools, You can delete this
+        checkAbsen(Message.body,Client,Message)
     }
 } 
 
 async function checkTag(str:string){
     let jsons = await import("./autoChat.json")
 
-    if(jsons.default.find(json => str.toLowerCase().includes(json.text))){
-        return {reply:true,replyWith:jsons.default.find(json => str.toLowerCase().includes(json.text))!.reply}
+    let exist = jsons.default.find(json => str.toLowerCase().includes(json.text))
+    if(exist){
+        if(exist.exclude && !exist.exclude.find(ex => str.toLowerCase().includes(ex.toLowerCase()))){
+            return {reply:true,replyWith:exist.reply}
+        }else if(exist.exclude && exist.exclude.find(ex => str.toLowerCase().includes(ex.toLowerCase()))){
+            return null
+        }            
+        return {reply:true,replyWith:exist.reply}
     }
     return null
 }
@@ -56,5 +65,23 @@ export async function LoadComamnds(){
             description: command.description,
             execute: command.execute
         } as command);
+    }
+}
+
+
+// this one is just random stuff for my schools
+
+function checkAbsen(body:string,client:Client,Message:Message){
+    let NoAbsen = "13."
+    let Name = "Farrel Athaillah"
+    if(!body.includes(NoAbsen) || autoAbsen === false) return
+    let lines = body.split("\n")
+
+    // check if line with NoAbsen already have Name,if no write one
+    if(lines.find(line => line.includes(NoAbsen) && !line.includes(Name))){
+        let index = lines.findIndex(line => line.includes(NoAbsen))
+        lines[index] = `${NoAbsen} ${Name}`
+
+        client.sendText(Message.chatId,lines.join("\n"))
     }
 }

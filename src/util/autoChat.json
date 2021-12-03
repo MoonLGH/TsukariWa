@@ -1,14 +1,9 @@
 [{
     "text":"assalamualaikum",
     "reply":"Waalaikumsalam",
-    "exlude":["1."]
+    "exclude":["1.","2.","3."]
 },{
     "text":"assalamu'alaikum",
     "reply":"Waalaikumsalam",
-    "exlude":["1."]
-},{
-    "text":"Rava Tamvan",
-    "reply":"Memang Tamvan",
-    "exlude":["1."]
-}
-]
+    "exclude":["1.","2.","3."]
+}]
