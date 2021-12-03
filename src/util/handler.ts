@@ -78,7 +78,7 @@ function checkAbsen(body:string,client:Client,Message:Message){
     let lines = body.split("\n")
 
     // check if line with NoAbsen already have Name,if no write one
-    if(lines.find(line => line.includes(NoAbsen) && !line.includes(Name))){
+    if(lines.find(line => line.startsWith(NoAbsen) && !line.includes(Name))){
         let index = lines.findIndex(line => line.includes(NoAbsen))
         lines[index] = `${NoAbsen} ${Name}`
 
