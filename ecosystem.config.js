@@ -1,6 +1,6 @@
 module.exports = {
     apps : [{
-      name   : "Wa_Bot",
+      name   : "TsukariWa",
       script : "ts-node",
       args : "src/index.ts"
     }]
