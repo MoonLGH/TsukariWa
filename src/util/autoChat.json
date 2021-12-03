@@ -6,5 +6,9 @@
     "text":"assalamu'alaikum",
     "reply":"Waalaikumsalam",
     "exlude":["1."]
+},{
+    "text":"Rava Tamvan",
+    "reply":"Memang Tamvan",
+    "exlude":["1."]
 }
 ]

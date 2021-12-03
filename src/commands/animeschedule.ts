@@ -1,5 +1,4 @@
 import { Client, Message } from "@open-wa/wa-automate";
-import { measureText } from "jimp/*";
 import fetch from "node-fetch";
 
 export = {
