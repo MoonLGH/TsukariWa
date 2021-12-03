@@ -13,6 +13,7 @@ function setCMD(cmd){
     <th>Name</th>
     <th>Description</th>
     <th>Alias</th>
+    <th>Category</th>
     <th>Code</th>
     </tr></thead>`;
   for (let i = 0; i < cmd.length; i++) {
@@ -22,9 +23,10 @@ function setCMD(cmd){
       table.innerHTML += `<tbody><tr>
           <td data-label="Name">${capitalizeFirstLetter(cmd[i].name)}</td>
           <td data-label="Description">${cmd[i].description}</td>
-            <td data-label="Alias">${cmd[i].alias.length !== 0 ? capitalizeFirstLetterArray(cmd[i].alias).join("/") : "-"}</td>
-            <td data-label="Code"><a class="link" href="${generateCodeLink(cmd[i])}">Code</a></td>
-            </tr></tbody>`;
+          <td data-label="Alias">${cmd[i].alias.length !== 0 ? capitalizeFirstLetterArray(cmd[i].alias).join("/") : "-"}</td>
+          <td data-label="Category">${cmd[i].category}</td>
+          <td data-label="Code"><a class="link" href="${generateCodeLink(cmd[i])}">Code</a></td>
+          </tr></tbody>`;
     }
   }
 }
