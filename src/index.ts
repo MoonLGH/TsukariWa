@@ -7,7 +7,7 @@ import {
 import * as Handler from './util/handler';
 import settings from './util/settings';
 create({
-    authTimeout:0,
+    authTimeout:60,
     logConsole: false,
     multiDevice: settings.MultipleDevice,
     cachedPatch: true
