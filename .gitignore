@@ -3,6 +3,7 @@ _IGNORE_session
 logs
 Website
 .env
+/chrome
 
 # managed
 **.data.json
