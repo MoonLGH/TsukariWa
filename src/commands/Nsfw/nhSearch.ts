@@ -44,6 +44,7 @@ export = {
     }
 }
 function bufferToDataUrl(mimetype: string, buffer: Buffer): string {
+   if(mimetype === "image/jpg") mimetype = "image/jpeg"
    return `data:${mimetype};base64,${buffer.toString("base64")}`;
 }
 
