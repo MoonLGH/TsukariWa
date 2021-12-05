@@ -26,6 +26,7 @@ export = {
 
             let imgurl = `https://i.nhentai.net/galleries/${book.media_id}/1.${(TYPE as any)[book.images.cover.t]}`
             const buffer = await getFileContentByUrl(imgurl)
+            console.log(buffer)
             client.sendImage(Message.from, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
         }else {
             let apisearch = await nanaApi.search(q)
@@ -40,6 +41,7 @@ export = {
 
             let imgurl = `https://i.nhentai.net/galleries/${book.media_id}/1.${(TYPE as any)[book.images.cover.t]}`
             const buffer = await getFileContentByUrl(imgurl)
+            console.log(buffer)
             client.sendImage(Message.from, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
         }
     }
