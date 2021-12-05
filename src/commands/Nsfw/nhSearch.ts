@@ -25,7 +25,7 @@ export = {
 
             let imgurl = `https://i.nhentai.net/galleries/${book.media_id}/1.${(TYPE as any)[book.images.cover.t]}`
             const buffer:Buffer = await fetch(imgurl).then(res => res.buffer())
-            client.sendImage(Message.sender.id, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
+            client.sendImage(Message.from, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
         }else {
             let apisearch = await nanaApi.search(q)
             let rand = apisearch.results[Math.floor(Math.random() * apisearch.results.length)]
@@ -39,7 +39,7 @@ export = {
 
             let imgurl = `https://i.nhentai.net/galleries/${book.media_id}/1.${(TYPE as any)[book.images.cover.t]}`
             const buffer:Buffer = await fetch(imgurl).then(res => res.buffer())
-            client.sendImage(Message.sender.id, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
+            client.sendImage(Message.from, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
         }
     }
 }
