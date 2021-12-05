@@ -20,11 +20,12 @@ export = {
             let book = exist.book!
             let text = ""
             text += `[${book.id}] ${book.title}`
-            text += `\nGenre = ${book.tags.map(tag => tag.name).join(" ")}`
+            text += `\nGenre = ${book.tags.map(tag => tag.name).join(" ") || "Unknown"}`
             client.reply(Message.chatId, text, Message.id)
             client.reply(Message.chatId, "Thumbnailnya ku send di pm, bahaya disini", Message.id)
 
             let imgurl = `https://i.nhentai.net/galleries/${book.media_id}/1.${(TYPE as any)[book.images.cover.t]}`
+            console.log(imgurl)
             const buffer = await getFileContentByUrl(imgurl)
             client.sendImage(Message.chatId, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
         }else {
@@ -34,18 +35,22 @@ export = {
 
             let text = ""
             text += `[${book.id}] ${book.title}`
-            text += `\nGenre = ${book.tags.map(tag => tag.name).join(" ")}`
+            text += `\nGenre = ${book.tags.map(tag => tag.name).join(" ") || "Unknown"}`
             client.reply(Message.chatId, text, Message.id)
             client.reply(Message.chatId, "Thumbnailnya ku send di pm, bahaya disini", Message.id)
 
             let imgurl = `https://i.nhentai.net/galleries/${book.media_id}/1.${(TYPE as any)[book.images.cover.t]}`
+            console.log(imgurl)
             const buffer = await getFileContentByUrl(imgurl)
-            client.sendImage(Message.chatId, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
+            const filext = (TYPE as any)[book.images.cover.t] === "jpg" ? "jpeg" : (TYPE as any)[book.images.cover.t]
+            client.sendImage(Message.chatId, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${filext}`,"Nih cover gambar yang tadi")
         }
     }
 }
 function bufferToDataUrl(mimetype: string, buffer: Buffer): string {
-    if(mimetype === "image/jpg") mimetype = "image/jpeg"
+   if(mimetype.includes("jpg")){
+    mimetype = "jpeg"
+   }
    return `data:${mimetype};base64,${buffer.toString("base64")}`;
 }
 
