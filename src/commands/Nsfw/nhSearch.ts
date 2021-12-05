@@ -2,6 +2,7 @@ import { Client, Message } from "@open-wa/wa-automate";
 import nana from "nana-api"
 const nanaApi = new nana()
 import fetch from "node-fetch"
+import axios from "axios";
 
 const TYPE = {
     j: "jpg",
@@ -24,7 +25,7 @@ export = {
             client.reply(Message.chatId, "Thumbnailnya ku send di pm, bahaya disini", Message.id)
 
             let imgurl = `https://i.nhentai.net/galleries/${book.media_id}/1.${(TYPE as any)[book.images.cover.t]}`
-            const buffer:Buffer = await fetch(imgurl).then(res => res.buffer())
+            const buffer = await getFileContentByUrl(imgurl)
             client.sendImage(Message.from, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
         }else {
             let apisearch = await nanaApi.search(q)
@@ -38,14 +39,24 @@ export = {
             client.reply(Message.chatId, "Thumbnailnya ku send di pm, bahaya disini", Message.id)
 
             let imgurl = `https://i.nhentai.net/galleries/${book.media_id}/1.${(TYPE as any)[book.images.cover.t]}`
-            const buffer:Buffer = await fetch(imgurl).then(res => res.buffer())
+            const buffer = await getFileContentByUrl(imgurl)
             client.sendImage(Message.from, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
         }
     }
 }
 function bufferToDataUrl(mimetype: string, buffer: Buffer): string {
-   if(mimetype === "image/jpg") mimetype = "image/jpeg"
+    if(mimetype === "image/jpg") mimetype = "image/jpeg"
    return `data:${mimetype};base64,${buffer.toString("base64")}`;
+}
+
+
+async function getFileContentByUrl(
+  download_url: string
+): Promise < Buffer > {
+  const response = await axios.get(download_url, {
+    responseType: "arraybuffer",
+  });
+  return Buffer.from(response.data, "base64");
 }
 
 async function isExist(id:string|number){
