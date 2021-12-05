@@ -22,11 +22,11 @@ export = {
             text += `[${book.id}] ${book.title}`
             text += `\nGenre = ${book.tags.length !== 0 ? book.tags.map(tag => tag.name).join(" ") : "Unknown"}`
             client.reply(Message.chatId, text, Message.id)
-            client.reply(Message.chatId, "Thumbnailnya ku send di pm, bahaya disini", Message.id)
+            // client.reply(Message.chatId, "Thumbnailnya ku send di pm, bahaya disini", Message.id)
 
             let imgurl = `https://i.nhentai.net/galleries/${book.media_id}/1.${(TYPE as any)[book.images.cover.t]}`
             // const buffer = await getFileContentByUrl(imgurl)
-            client.sendFileFromUrl(Message.chatId, imgurl, `1.${(TYPE as any)[book.images.cover.t]}`, text, Message.id)
+            // client.sendFileFromUrl(Message.chatId, imgurl, `1.${(TYPE as any)[book.images.cover.t]}`, text, Message.id)
             // client.sendImage(Message.chatId, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
         }else {
             let apisearch = await nanaApi.search(q)
@@ -37,11 +37,11 @@ export = {
             text += `[${book.id}] ${book.title}`
             text += `\nGenre = ${book.tags.length !== 0 ? book.tags.map(tag => tag.name).join(" ") : "Unknown"}`
             client.reply(Message.chatId, text, Message.id)
-            client.reply(Message.chatId, "Thumbnailnya ku send di pm, bahaya disini", Message.id)
+            // client.reply(Message.chatId, "Thumbnailnya ku send di pm, bahaya disini", Message.id)
 
             let imgurl = `https://i.nhentai.net/galleries/${book.media_id}/1.${(TYPE as any)[book.images.cover.t]}`
             // const buffer = await getFileContentByUrl(imgurl)
-            client.sendFileFromUrl(Message.chatId, imgurl, `1.${(TYPE as any)[book.images.cover.t]}`, text, Message.id)
+            // client.sendFileFromUrl(Message.chatId, imgurl, `1.${(TYPE as any)[book.images.cover.t]}`, text, Message.id)
             // client.sendFileFromUrl(Message.chatId, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`, buffer),`image.${(TYPE as any)[book.images.cover.t]}`,"Nih cover gambar yang tadi")
         }
     }
