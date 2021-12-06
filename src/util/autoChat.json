@@ -1,12 +1,5 @@
 [{
-    "text":"assalamualaikum",
-    "reply":"Waalaikumsalam",
-    "exclude":["1.","2.","3."]
-},{
-    "text":"assalamu'alaikum",
-    "reply":"Waalaikumsalam",
-    "exclude":["1.","2.","3."]
-},{
     "text":"test1",
-    "reply":"test2"
+    "reply":"test2",
+    "exclude": ["test3"]
 }]
