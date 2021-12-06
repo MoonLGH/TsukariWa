@@ -5,6 +5,7 @@ Website
 .env
 /chrome
 
+src/temp
 # managed
 **.data.json
 **.node-persist**

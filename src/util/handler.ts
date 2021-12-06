@@ -57,7 +57,7 @@ export async function LoadComamnds(){
     const dirs = fs
     .readdirSync("./src/commands/",{
         withFileTypes: true,
-      }).filter((dirent) => dirent.isDirectory()).map((dirent) => dirent.name).filter((dir) => dir !== "NotUse")
+      }).filter((dirent) => dirent.isDirectory()).map((dirent) => dirent.name)
     for (const folder of dirs) {
         for(let file of fs.readdirSync("./src/commands/" + folder).filter((file) => file.endsWith(".ts"))){
             const command = await import(`../commands/${folder}/${file}`);
