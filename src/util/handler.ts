@@ -1,7 +1,7 @@
 import { Message,Client } from "@open-wa/wa-automate";
 import settings from "./settings";
 import fs from "fs"
-import { commands,autoChat,autoAbsen } from "./GlobalVar";
+import { commands,autoChat,autoAbsen,defaultTags } from "./GlobalVar";
 import { command } from "./typing";
 
 const prefix = settings.prefix;
@@ -39,9 +39,7 @@ export async function Handle(Message:Message,Client:Client) {
 } 
 
 async function checkTag(str:string){
-    let jsons = await import("./autoChat.json")
-
-    let exist = jsons.default.find(json => str.toLowerCase().includes(json.text))
+    let exist = defaultTags.find(json => str.toLowerCase().includes(json.text))
     if(exist){
         if(exist.exclude && !exist.exclude.find(ex => str.toLowerCase().includes(ex.toLowerCase()))){
             return {reply:true,replyWith:exist.reply,name:exist.text}
@@ -83,7 +81,7 @@ function checkAbsen(body:string,client:Client,Message:Message){
     let lines = body.split("\n")
 
     // check if line with NoAbsen already have Name,if no write one
-    if(lines.find(line => line.startsWith(NoAbsen) && !line.includes(Name))){
+    if(lines.find(line => line.startsWith(NoAbsen) && (!line.includes(Name) && line === "13."))){
         let index = lines.findIndex(line => line.includes(NoAbsen))
         lines[index] = `${NoAbsen} ${Name}`
 

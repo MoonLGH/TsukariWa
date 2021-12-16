@@ -10,4 +10,10 @@ interface command {
     execute: (Message:Message,args:string[],Client:Client) => void
 }
 
-export {command}
+interface tags {
+    text: string;
+    reply: string;
+    exclude?: string[];
+}
+
+export {command,tags}
