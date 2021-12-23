@@ -22,7 +22,11 @@
     "nana-api": "^1.1.4",
     "node-fetch": "^2.6.1",
     "rss-to-json": "^2.0.2",
+    "twitter": "^1.7.1",
     "ytdl-core": "^4.9.1",
     "ytpl": "^2.2.3"
+  },
+  "devDependencies": {
+    "@types/twitter": "^1.7.1"
   }
 }

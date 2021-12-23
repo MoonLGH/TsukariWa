@@ -9,9 +9,12 @@ let autoChat = true;
 // this one is just random stuff for my schools
 let autoAbsen = true;
 
+let allowTweet = false;
+
 export {
   commands,
   autoChat,
   autoAbsen,
-  defaultTags
+  defaultTags,
+  allowTweet,
 };
