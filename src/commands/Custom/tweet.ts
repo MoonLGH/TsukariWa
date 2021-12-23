@@ -21,7 +21,7 @@ export = {
         twt.post('statuses/update', {
             status: `${args.join(" ")}\n\n\n\n\n\n -${Message.sender.formattedName}`
         }).then(function (tweet) {
-            client.reply(Message.chatId, "Tweeted\nLook at https://twitter.com/MoonLIsGood/status/${tweet.id_str}`)",Message.id)
+            client.reply(Message.chatId, `Tweeted\nLook at https://twitter.com/MoonLIsGood/status/${tweet.id_str}`,Message.id)
         }).catch(err =>{
             console.log(err)
         })
