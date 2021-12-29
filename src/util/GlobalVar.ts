@@ -5,6 +5,7 @@ const commands = new Collection<string, command>();
 const defaultTags = new Collection<string, tags>();
 
 let autoChat = true;
+let nsfw = false
 
 // this one is just random stuff for my schools
 let autoAbsen = true;
@@ -17,4 +18,5 @@ export {
   autoAbsen,
   defaultTags,
   allowTweet,
+  nsfw
 };

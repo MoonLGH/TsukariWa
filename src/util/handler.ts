@@ -1,7 +1,7 @@
 import { Message,Client } from "@open-wa/wa-automate";
 import settings from "./settings";
 import fs from "fs"
-import { commands,autoChat,autoAbsen,defaultTags } from "./GlobalVar";
+import { commands,autoChat,autoAbsen,defaultTags,nsfw } from "./GlobalVar";
 import { command } from "./typing";
 
 const prefix = settings.prefix;
@@ -24,6 +24,7 @@ export async function Handle(Message:Message,Client:Client) {
         if(!command) return
         if(commands.has(command.toLowerCase()) || commands.find(cmd => cmd.alias.includes(command!.toLowerCase()))) {
             let cmd = commands.get(command) || commands.find((cmd) => cmd.alias.includes(command!.toLowerCase()));
+            if(cmd?.category === "Nsfw" && nsfw !== true) return
             cmd!.execute(Message, args,Client);
         }
     }else {
