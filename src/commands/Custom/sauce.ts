@@ -26,10 +26,8 @@ export = {
         const result = results[0]
         let strings = `Founded with ${result.similarity.toFixed(3)}% similarity\nin ${result.site}\n${result.authorName ? `Author ${result.authorName}\n`:""}${result.authorUrl ? `Author Url ${result.authorUrl}\n`:""}${result.url}`
 
-        let res = await axios.get(result.url, { responseType: 'arraybuffer'})
-        const buffer = Buffer.from(res.data, 'base64');
-
-        client.sendImage(Message.chatId, bufferToDataUrl("image/png",buffer), "result.png",strings)
+        client.sendFileFromUrl(Message.chatId,result.url,"result.png",strings,Message.id)
+        cleanFile(name)
     }
 }
 
