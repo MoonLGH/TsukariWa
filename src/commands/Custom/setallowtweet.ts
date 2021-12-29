@@ -8,7 +8,7 @@ export = {
         if(Message.fromMe){
             let Data = await import("../../util/GlobalVar")
             Data.allowTweet = JSON.parse(args[0])
-            client.reply(Message.chatId, "AutoAbsen has been set to " + Data.autoAbsen,Message.id)
+            client.reply(Message.chatId, "allow tweet has been set to " + Data.autoAbsen,Message.id)
         }else{
             client.reply(Message.chatId, "Only the owner can use this command",Message.id)
         }
