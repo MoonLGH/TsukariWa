@@ -19,7 +19,7 @@
     "dotenv": "^10.0.0",
     "jimp": "^0.16.1",
     "mal-scraper": "github:Rapougnac/MalScraper#typings",
-    "nana-api": "^1.1.4",
+    "nana-api": "github:MoonLGH/nana-api",
     "node-fetch": "^2.6.1",
     "rss-to-json": "^2.0.2",
     "sagiri": "^3.1.1",

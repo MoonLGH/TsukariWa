@@ -1,6 +1,6 @@
 import { Client, Message } from "@open-wa/wa-automate";
 import axios from "axios";
-import nana from "nana-api"
+import nana, { nHentaiAPI } from "nana-api"
 const nanaApi = new nana()
 import fetch from "node-fetch"
 
@@ -31,8 +31,8 @@ export = {
             client.sendImage(Message.sender.id, bufferToDataUrl(`image/${(TYPE as any)[book.images.cover.t]}`,buffer), `result.${(TYPE as any)[book.images.cover.t]}`,"here u go")
         }else {
             let apisearch = await nanaApi.search(q)
-            let rand = apisearch.results[Math.floor(Math.random() * apisearch.results.length)]
-            let book = await nanaApi.g(rand.id)
+            let rand = apisearch.results[0]
+            let book = (await nanaApi.g(rand.id) as nHentaiAPI)
 
             let text = ""
             text += `[${book.id}] ${book.title}`
@@ -56,6 +56,9 @@ function bufferToDataUrl(mimetype: string, buffer: Buffer): string {
 async function isExist(id:string|number){
     try{
         let book = await nanaApi.g(id)
+        if(book === null){
+            return {res:false}
+        }
         return {res:true,book}
     }catch(e){
         return {res:false}
