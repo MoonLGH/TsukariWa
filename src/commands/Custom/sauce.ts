@@ -29,6 +29,7 @@ export = {
         let res = await axios.get(result.thumbnail, { responseType: 'arraybuffer'})
         const buffer = Buffer.from(res.data, 'base64');
 
+        client.reply(Message.chatId,strings,Message.id)
         client.sendImage(Message.chatId, bufferToDataUrl("image/png",buffer), "result.png",strings)
     }
 }
