@@ -6,6 +6,7 @@ Website
 /chrome
 src/temp
 temp/*
+!temp/placeholder
 
 # managed
 **.data.json
