@@ -13,7 +13,6 @@
   "dependencies": {
     "@discordjs/collection": "^0.3.2",
     "@open-wa/wa-automate": "^4.28.0",
-    "@types/node": "^16.3.3",
     "@types/node-fetch": "^2.5.12",
     "@vitalets/google-translate-api": "^7.0.0",
     "dotenv": "^10.0.0",
@@ -29,6 +28,7 @@
     "ytpl": "^2.2.3"
   },
   "devDependencies": {
+    "@types/node": "^17.0.12",
     "@types/twitter": "^1.7.1"
   }
 }
