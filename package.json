@@ -12,8 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/collection": "^0.3.2",
-    "@open-wa/wa-automate": "^4.28.0",
-    "@types/node": "^16.3.3",
+    "@open-wa/wa-automate": "^4.30.7",
+    "@types/node": "^16.11.21",
     "@types/node-fetch": "^2.5.12",
     "@vitalets/google-translate-api": "^7.0.0",
     "dotenv": "^10.0.0",
@@ -25,10 +25,11 @@
     "sagiri": "^3.1.1",
     "ts-node": "^10.4.0",
     "twitter": "^1.7.1",
-    "ytdl-core": "^4.9.1",
+    "ytdl-core": "^4.10.0",
     "ytpl": "^2.2.3"
   },
   "devDependencies": {
+    "@types/node": "^17.0.12",
     "@types/twitter": "^1.7.1"
   }
 }
