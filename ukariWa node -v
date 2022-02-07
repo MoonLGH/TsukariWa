@@ -1,0 +1,71 @@
+[1mdiff --git a/package-lock.json b/package-lock.json[m
+[1mindex b2b3819..1be2d12 100644[m
+[1m--- a/package-lock.json[m
+[1m+++ b/package-lock.json[m
+[36m@@ -16,7 +16,7 @@[m
+         "@vitalets/google-translate-api": "^7.0.0",[m
+         "dotenv": "^10.0.0",[m
+         "jimp": "^0.16.1",[m
+[31m-        "mal-scraper": "github:Rapougnac/MalScraper#typings",[m
+[32m+[m[32m        "mal-scraper": "^2.11.3",[m
+         "nana-api": "github:MoonLGH/nana-api",[m
+         "node-fetch": "^2.6.1",[m
+         "rss-to-json": "^2.0.2",[m
+[36m@@ -3333,6 +3333,7 @@[m
+       "resolved": "https://registry.npmjs.org/extract-zip/-/extract-zip-2.0.1.tgz",[m
+       "integrity": "sha512-GDhU9ntwuKyGXdZBUgTIe+vXnWj0fppUEtMDL0+idd5Sta8TGpHssn/eusA9mrPr9qNDym6SxAYZjNvCn/9RBg==",[m
+       "dependencies": {[m
+[32m+[m[32m        "@types/yauzl": "^2.9.1",[m
+         "debug": "^4.1.1",[m
+         "get-stream": "^5.1.0",[m
+         "yauzl": "^2.10.0"[m
+[36m@@ -4823,6 +4824,7 @@[m
+       "resolved": "https://registry.npmjs.org/jsonfile/-/jsonfile-6.1.0.tgz",[m
+       "integrity": "sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==",[m
+       "dependencies": {[m
+[32m+[m[32m        "graceful-fs": "^4.1.6",[m
+         "universalify": "^2.0.0"[m
+       },[m
+       "optionalDependencies": {[m
+[36m@@ -6219,6 +6221,9 @@[m
+       "version": "4.0.0",[m
+       "resolved": "https://registry.npmjs.org/jsonfile/-/jsonfile-4.0.0.tgz",[m
+       "integrity": "sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=",[m
+[32m+[m[32m      "dependencies": {[m
+[32m+[m[32m        "graceful-fs": "^4.1.6"[m
+[32m+[m[32m      },[m
+       "optionalDependencies": {[m
+         "graceful-fs": "^4.1.6"[m
+       }[m
+[36m@@ -9487,7 +9492,8 @@[m
+       "resolved": "https://registry.npmjs.org/winston-syslog/-/winston-syslog-2.4.4.tgz",[m
+       "integrity": "sha512-zDjoKO932Yszvzq8WtbIFMXHwAT2MOxpWC9s6djw2tvjdRESWw3au6l+0xDMatMhNWVoVaVNkDXF+r/eyoBUVA==",[m
+       "dependencies": {[m
+[31m-        "glossy": "^0.1.7"[m
+[32m+[m[32m        "glossy": "^0.1.7",[m
+[32m+[m[32m        "unix-dgram": "2.0.3"[m
+       },[m
+       "engines": {[m
+         "node": ">= 8"[m
+[36m@@ -13757,7 +13763,7 @@[m
+     },[m
+     "mal-scraper": {[m
+       "version": "git+ssh://git@github.com/Rapougnac/MalScraper.git#39c69b8ee9c8dc4adda0c0e8aacccb94485c53ac",[m
+[31m-      "from": "mal-scraper@github:Rapougnac/MalScraper#typings",[m
+[32m+[m[32m      "from": "mal-scraper@^2.11.3",[m
+       "requires": {[m
+         "axios": "^0.21.1",[m
+         "cheerio": "^1.0.0-rc.3",[m
+[1mdiff --git a/package.json b/package.json[m
+[1mindex 85f1f52..203580c 100644[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@ -18,7 +18,7 @@[m
+     "@vitalets/google-translate-api": "^7.0.0",[m
+     "dotenv": "^10.0.0",[m
+     "jimp": "^0.16.1",[m
+[31m-    "mal-scraper": "github:Rapougnac/MalScraper#typings",[m
+[32m+[m[32m    "mal-scraper": "^2.11.3",[m
+     "nana-api": "github:MoonLGH/nana-api",[m
+     "node-fetch": "^2.6.1",[m
+     "rss-to-json": "^2.0.2",[m
