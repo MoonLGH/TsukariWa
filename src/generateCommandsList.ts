@@ -12,7 +12,7 @@ async function start(){
             category: cmd.category,
             path: `/src/commands/${cmd.category}/${cmd.filepath}`
         }
-    })))
+    }), undefined, 4))
     console.log("Done")
     return commands.toJSON()
 }
