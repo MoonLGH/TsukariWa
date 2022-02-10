@@ -1,12 +1,4 @@
 [{
-    "text":"assalamualaikum",
-    "reply":"Waalaikumsalam bu",
-    "exclude":["1.","2.","3.","4"]    
-},{
-    "text":"assalamu'alaikum",
-    "reply":"Waalaikumsalam bu",
-    "exclude":["1.","2.","3.","4"]   
-},{
     "text":"daoa",
     "reply":"aoa",
     "exclude":["aoa"]
