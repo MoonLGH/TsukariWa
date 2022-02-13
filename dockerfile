@@ -1,10 +1,18 @@
 FROM zenika/alpine-chrome:with-node
 
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
-ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
+ARG NEXT_PUBLIC_FATHOM_CODE
+ARG NEXT_PUBLIC_SITE_URL
+
+# Create app directory
 WORKDIR /usr/src/app
-COPY --chown=chrome package.json package-lock.json ./
-RUN npm install
-COPY --chown=chrome . ./
-ENTRYPOINT ["tini", "--"]
-CMD ["ts-node", "src/index.ts"]
+
+COPY package.json yarn.lock ./
+
+# Install deps
+RUN npm i
+
+# Bundle app source
+COPY . .
+
+# Start
+CMD [ "npm", "start" ]
