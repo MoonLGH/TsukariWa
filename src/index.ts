@@ -12,6 +12,7 @@ dotenv.config();
 
 create({
     authTimeout:0,
+    qrTimeout:0,
     logConsole: false,
     multiDevice: settings.MultipleDevice || true,
     useChrome:settings.UseChrome || false,
