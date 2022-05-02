@@ -3,5 +3,6 @@ FROM node:16
 FROM browserless/chrome
 FROM heroku/heroku:20
 COPY . .
+USER root
 RUN npm install
 CMD [ "npm", "start" ]
