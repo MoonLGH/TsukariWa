@@ -16,6 +16,7 @@ create({
     multiDevice: settings.MultipleDevice || true,
     useChrome:settings.UseChrome || false,
     executablePath:process.env.PathChrome || '',
+    popup:true,
 }).then(client => start(client));
 
 async function start(client: Client) {
