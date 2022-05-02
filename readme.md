@@ -1,5 +1,5 @@
 
-# Whatsapp Bot random i guess with typscript btw
+# Whatsapp Bot ith typscript i guess
 
 ### About & Settings
 
