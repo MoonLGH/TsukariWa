@@ -7,4 +7,4 @@ COPY --chown=chrome package.json ./
 RUN npm install
 COPY --chown=chrome . ./
 ENTRYPOINT ["tini", "--"]
-CMD [ "ts-node", "src/index.ts" ]
+CMD [ "npm", "start" ]
