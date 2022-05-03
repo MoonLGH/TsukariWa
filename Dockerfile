@@ -1,2 +1,2 @@
 FROM openwa/wa-automate
-ENTRYPOINT []
+ENTRYPOINT ["npm","start"]
