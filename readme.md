@@ -1,5 +1,5 @@
 
-# Whatsapp Bot With typscript i guess
+# Whatsapp Bot With TS i guess
 
 ### About & Settings
 
