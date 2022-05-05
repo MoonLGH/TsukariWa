@@ -8,6 +8,8 @@ src/temp
 temp/*
 !temp/placeholder
 
+**-lock.json
+
 # managed
 **.data.json
 **.node-persist**
