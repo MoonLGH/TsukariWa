@@ -29,9 +29,9 @@ async function start(client: Client) {
     client.onAnyMessage(async (message: Message) => {
         Handler.Handle(message,client);
 
-        if(!message.sender.isMyContact && !message.isGroupMsg) {
-            client.reply(message.chatId, "Hai, ini bot yang berkendali atas akun farrel kali ini, \nAku mendeteksi kamu tidak tersimpan di kontak ku\njadinya aku mau ngasih tau kalau farrel lagi tidur",message.id)
-            client.reply(message.chatId, "Kalau kamu adalah kurir Sicepat yang ingin drop paket, silahkan datang ke lantai 2 pasar pemda lalu ke kantor pt als, nanti kamu bisa drop di situ, ketok saja",message.id)
-        }
+        // if(!message.sender.isMyContact && !message.isGroupMsg) {
+        //     client.reply(message.chatId, "Hai, ini bot yang berkendali atas akun farrel kali ini, \nAku mendeteksi kamu tidak tersimpan di kontak ku\njadinya aku mau ngasih tau kalau farrel lagi tidur",message.id)
+        //     client.reply(message.chatId, "Kalau kamu adalah kurir Sicepat yang ingin drop paket, silahkan datang ke lantai 2 pasar pemda lalu ke kantor pt als, nanti kamu bisa drop di situ, ketok saja",message.id)
+        // }
     });
 }
