@@ -16,8 +16,9 @@ create({
     logConsole: false,
     multiDevice: settings.MultipleDevice || true,
     useChrome:settings.UseChrome || false,
-    executablePath:process.env.PathChrome || '',
+    killProcessOnBrowserClose:true,
     popup:true,
+    killProcessOnTimeout:true,
 }).then(client => start(client));
 
 async function start(client: Client) {
