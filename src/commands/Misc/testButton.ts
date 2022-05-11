@@ -5,7 +5,7 @@ export = {
     description: "Generate Sticker From Image",
     execute: async (Message: Message, args: string[],client:Client) => {
 
-        client.sendButtons(Message.chatId,"test",[{id:"test",text:"test"}])
+        client.sendButtons(Message.chatId,"test",[{id:"test",text:"test"}],"title","footer")
 
     }
 }
