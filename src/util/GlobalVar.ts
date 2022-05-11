@@ -1,7 +1,8 @@
 import {Collection} from "@discordjs/collection";
-import {command,tags} from "./typing";
+import {command,tags,button} from "./typing";
 
 const commands = new Collection<string, command>();
+const buttons = new Collection<string, button>();
 const defaultTags = new Collection<string, tags>();
 
 let autoChat = true;
@@ -18,5 +19,6 @@ export {
   autoAbsen,
   defaultTags,
   allowTweet,
-  nsfw
+  nsfw,
+  buttons
 };

@@ -1,8 +1,8 @@
 import { Message,Client } from "@open-wa/wa-automate";
 import settings from "./settings";
 import fs from "fs"
-import { commands,autoChat,autoAbsen,defaultTags,nsfw } from "./GlobalVar";
-import { command } from "./typing";
+import { commands,autoChat,autoAbsen,defaultTags,nsfw,buttons } from "./GlobalVar";
+import { command,button } from "./typing";
 
 const prefix = settings.prefix;
 export async function Handle(Message:Message,Client:Client) {  
@@ -38,6 +38,17 @@ export async function Handle(Message:Message,Client:Client) {
         checkAbsen(Message.body,Client,Message)
     }
 } 
+
+export async function HandleButton(message:Message,client:Client){
+        // if (message.selectedButtonId !== "giveaway-kato") return;
+    const button = buttons.find((Button)=>Button.name === message.selectedButtonId)
+    if(button){
+        button.execute(message,client)
+    } else {
+        client.sendText(message.chatId,"no button exist")
+        return
+    }
+}
 
 async function checkTag(str:string){
     let exist = defaultTags.find(json => str.toLowerCase().includes(json.text))
@@ -87,5 +98,18 @@ function checkAbsen(body:string,client:Client,Message:Message){
         lines[index] = `${NoAbsen} ${Name}`
 
         client.sendText(Message.chatId,lines.join("\n"))
+    }
+}
+
+export async function LoadButtons(){
+    const files = fs
+    .readdirSync("./src/buttons/").filter((file) => file.endsWith(".ts"))
+    for (const file of files) {
+            const command = await import(`../buttons/${file}`);
+                buttons.set(command.name.toLowerCase(), {
+                    name: command.name,
+                    filepath: file,
+                    execute: command.execute
+                } as button);
     }
 }

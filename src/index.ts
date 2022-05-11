@@ -26,8 +26,13 @@ async function start(client: Client) {
     for (let json of jsons.default) {
         Vars.defaultTags.set(json.text, json)
     }
-    Handler.LoadComamnds()
+    await Handler.LoadComamnds()
+    await Handler.LoadButtons()
     client.onAnyMessage(async (message: Message) => {
         Handler.Handle(message,client);
     });
+
+    client.onButton(async (message: Message) =>{
+        Handler.HandleButton(message,client)
+    })
 }

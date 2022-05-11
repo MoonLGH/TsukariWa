@@ -10,10 +10,16 @@ interface command {
     execute: (Message:Message,args:string[],Client:Client) => void
 }
 
+interface button {
+    name: string;
+    filepath: string,
+    execute: (Message:Message,Client:Client) => void
+}
+
 interface tags {
     text: string;
     reply: string;
     exclude?: string[];
 }
 
-export {command,tags}
+export {command,tags,button}
