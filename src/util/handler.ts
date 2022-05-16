@@ -25,6 +25,7 @@ export async function Handle(Message:Message,Client:Client) {
         if(commands.has(command.toLowerCase()) || commands.find(cmd => cmd.alias.includes(command!.toLowerCase()))) {
             let cmd = commands.get(command) || commands.find((cmd) => cmd.alias.includes(command!.toLowerCase()));
             if(cmd?.category === "Nsfw" && nsfw !== true) return
+            console.log(cmd)
             if(cmd){
                 cmd!.execute(Message, args,Client);
             }
