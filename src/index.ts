@@ -19,6 +19,7 @@ create({
     killProcessOnBrowserClose:true,
     popup:true,
     killProcessOnTimeout:true,
+    licenseKey: process.env.Lisences
 }).then(client => start(client));
 
 async function start(client: Client) {
