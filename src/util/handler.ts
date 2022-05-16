@@ -25,7 +25,9 @@ export async function Handle(Message:Message,Client:Client) {
         if(commands.has(command.toLowerCase()) || commands.find(cmd => cmd.alias.includes(command!.toLowerCase()))) {
             let cmd = commands.get(command) || commands.find((cmd) => cmd.alias.includes(command!.toLowerCase()));
             if(cmd?.category === "Nsfw" && nsfw !== true) return
-            cmd!.execute(Message, args,Client);
+            if(cmd){
+                cmd!.execute(Message, args,Client);
+            }
         }
     }else {
         let check = await checkTag(Message.body)
