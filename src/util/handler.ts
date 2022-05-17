@@ -43,7 +43,9 @@ export async function Handle(Message:Message,Client:Client) {
 } 
 
 export async function HandleButton(message:Message,client:Client){
-        // if (message.selectedButtonId !== "giveaway-kato") return;
+    if(message.selectedButtonId.startsWith("rps")){
+        
+    }
     const button = buttons.find((Button)=>Button.name === message.selectedButtonId)
     if(button){
         button.execute(message,client)

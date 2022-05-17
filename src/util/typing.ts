@@ -1,4 +1,4 @@
-import { Client, Message } from '@open-wa/wa-automate';
+import { Client, Message,ContactId } from '@open-wa/wa-automate';
 
 interface command {
     name: string;
@@ -8,6 +8,18 @@ interface command {
     args: string[];
     alias: string[];
     execute: (Message:Message,args:string[],Client:Client) => void
+}
+
+export interface rpsModel{
+    host:ContactId;
+    challanging:ContactId;
+    uniqueId:string;
+    currentstate: state[];
+}
+
+interface state {
+    name:string;
+    chosen:string
 }
 
 interface button {
