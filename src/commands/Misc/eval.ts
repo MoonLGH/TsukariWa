@@ -69,7 +69,7 @@ export = {
           let str = output.length > 1000 ? bin : output
           return client.sendText(Message.chatId,(str as string))
         } catch(err) {
-            return client.sendText(Message.chatId,(err as Error).name)
+            return client.sendText(Message.chatId,`${(err as Error).name}\n${(err as Error).stack}`)
         }
     }
 }
