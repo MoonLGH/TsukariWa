@@ -3,6 +3,7 @@ import settings from "./settings";
 import fs from "fs"
 import { commands,autoChat,autoAbsen,defaultTags,nsfw,buttons } from "./GlobalVar";
 import { command,button } from "./typing";
+import {RPS} from "./rps"
 
 const prefix = settings.prefix;
 export async function Handle(Message:Message,Client:Client) {  
@@ -44,7 +45,7 @@ export async function Handle(Message:Message,Client:Client) {
 
 export async function HandleButton(message:Message,client:Client){
     if(message.selectedButtonId.startsWith("rps")){
-        
+        return RPS(message,client)
     }
     const button = buttons.find((Button)=>Button.name === message.selectedButtonId)
     if(button){
