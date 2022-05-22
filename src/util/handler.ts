@@ -1,7 +1,7 @@
 import { Message,Client } from "@open-wa/wa-automate";
 import settings from "./settings";
 import fs from "fs"
-import { commands,autoChat,autoAbsen,defaultTags,nsfw,buttons } from "./GlobalVar";
+import { commands,autoChat,autoAbsen,defaultTags,nsfw,buttons,isSleep } from "./GlobalVar";
 import { command,button } from "./typing";
 import {RPS} from "./rps"
 
@@ -16,8 +16,12 @@ export async function Handle(Message:Message,Client:Client) {
             }
         }
     }
+    if(!Message.sender.isMyContact && isSleep){
+        Client.sendText(Message.chatId,"Hai, ini adalah autochat \nFarrel telah mengaktifkan mode tidur, jika kamu adalah kurir paket, tulis '#dimana'")
+    }
     if(Message.body && Message.body.startsWith(prefix)){
         if(Message.body === "") return;
+
         let args = Message.body.slice(prefix.length).split(/ +/);
         let command = args.shift()
         

@@ -7,7 +7,8 @@ const defaultTags = new Collection<string, tags>();
 const rps = new Collection<string, rpsModel>();
 
 let autoChat = true;
-let nsfw = false
+let nsfw = false;
+let isSleep = false;
 
 // this one is just random stuff for my schools
 let autoAbsen = true;
@@ -22,5 +23,6 @@ export {
   allowTweet,
   nsfw,
   buttons,
-  rps
+  rps,
+  isSleep
 };
