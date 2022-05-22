@@ -16,7 +16,7 @@ export async function Handle(Message:Message,Client:Client) {
             }
         }
     }
-    if(!Message.isGroupMsg && isSleep){
+    if(!Message.isGroupMsg && isSleep && !Message.fromMe){
         Client.sendText(Message.chatId,"Hai, ini adalah autochat \nFarrel telah mengaktifkan mode tidur, jika kamu adalah kurir paket, tulis '#dimana'")
     }
     if(Message.body && Message.body.startsWith(prefix)){
