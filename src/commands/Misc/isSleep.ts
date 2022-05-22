@@ -1,7 +1,7 @@
 import { Client, Message } from "@open-wa/wa-automate";
 
 export = {
-    name:"isleep",
+    name:"isSleep",
     description: "isSleep (ownerOnly)",
     execute: async (Message: Message, args: string[],client:Client) => {
         if(Message.fromMe){
