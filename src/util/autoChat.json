@@ -1,9 +1,0 @@
-[{
-    "text":"daoa",
-    "reply":"aoa",
-    "exclude":["aoa"]
-},{
-    "text":"test1",
-    "reply":"test2",
-    "exclude": ["test3"]
-}]

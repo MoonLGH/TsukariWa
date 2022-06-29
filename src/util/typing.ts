@@ -1,4 +1,4 @@
-import { Client, Message,ContactId } from '@open-wa/wa-automate';
+import { Client, Message,ContactId,ChatId } from '@open-wa/wa-automate';
 
 interface command {
     name: string;
@@ -32,6 +32,11 @@ interface tags {
     text: string;
     reply: string;
     exclude?: string[];
+}
+
+export interface grouptags {
+    name:ChatId;
+    tags:tags[]
 }
 
 export {command,tags,button}

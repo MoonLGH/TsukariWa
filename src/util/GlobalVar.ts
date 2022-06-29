@@ -1,10 +1,11 @@
 import {Collection} from "@discordjs/collection";
-import {command,tags,button,rpsModel} from "./typing";
+import {command,tags,button,rpsModel,grouptags} from "./typing";
 
 const commands = new Collection<string, command>();
 const buttons = new Collection<string, button>();
 const defaultTags = new Collection<string, tags>();
 const rps = new Collection<string, rpsModel>();
+const tagsGroup:grouptags[] = []
 
 let autoChat = true;
 let nsfw = false;
@@ -24,5 +25,6 @@ export {
   nsfw,
   buttons,
   rps,
-  isSleep
+  isSleep,
+  tagsGroup
 };
